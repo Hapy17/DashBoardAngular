@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <form class=" card p-3 col-4" #globalFormValidation="ngForm" (ngSubmit)="connectUser()">
+            
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="email" class="form-control" id="username" placeholder="name@example.com"
+                required autofocus
+                name="username"
+                [(ngModel)]="userForm.username">
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="********"
+                required
+                name="password"
+                [(ngModel)]="userForm.password">
+            </div>
+
+            <button [disabled]="!globalFormValidation.valid" class="btn btn-lg btn-primary btn-block" type="submit">Se connecter</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,170 @@
+<!-- SideNav -->
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+        <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-light">
+            <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
+                
+                    <img src="../../../assets/img/Logo.png" alt="Logo la nîmalerie" class="logoDash fs-5 d-none d-sm-inline">
+                
+                <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link align-middle px-0">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="print()" class="nav-link align-middle px-0 cp">Imprimer un résumé</a>
+                    </li>
+                </ul>
+                    
+                <hr>
+                <div class="pb-4">
+                    <button (click)="doLogOut()" class="btn btn-warning mt-3">Logout</button>
+                </div>
+            </div>
+        </div>
+        <div class="col py-3">
+            <!-- CONTENT -->
+<div class="container ">
+    <h2 class="mb-4">Bonjour, Monsieur Cappard</h2>
+    
+    <div class="row gy-3">
+        <!-- Montant total -->
+        <div class="col-3">
+            <div class=" blue card text-white shadow-sm">
+                <h3>Montant total des ventes</h3>
+                <span>{{stats.montantVenteTotal  | number : ".2-2"}} €  </span>
+            </div>
+        </div>
+        
+        <!-- Nb de commandes -->
+        <div class="col-3">
+            <div class="card  shadow-sm">
+                <h3>Nombre de commandes</h3>
+                <span>{{stats.nbCommand}} </span>
+            </div>
+        </div>
+
+        <!-- Nb de paniers -->
+        <div class="col-3">
+            <div class="card shadow-sm ">
+                <h3>Nombre de paniers</h3>
+                <span>{{stats.nbPanier}} </span>
+            </div>
+        </div>
+
+        <!-- panier moyen -->
+        <div class="col-3">
+            <div class="card shadow-sm">
+                <h3>Panier moyen</h3>
+                <span>{{panierMoyen | number : ".2-2"}} € </span>
+            </div>
+        </div>
+
+        <!-- Produits les plus vendus -->
+        <div class="col-3">
+            <div class="card tall-card shadow-sm">
+                <h3>Produit</h3>
+                <p>Les plus vendus</p>
+                <span>{{panierMoyen | number : ".2-2"}} € </span>
+            </div>
+        </div>
+
+        <!-- % récurrence commandes -->
+        <div class="col-3">
+            <div class="card tall-card shadow-sm ">
+                <h3>% récurrence commandes </h3>
+                <p>Nb de 1ère commandes / Total commandes</p>
+                <span>{{stats.nbCommand}} </span>
+            </div>
+        </div>
+
+        <!-- % récurrence Panier -->
+        <div class="col-3">
+            <div class="card tall-card shadow-sm">
+                <h3>% récurrence Panier</h3>
+                <p>Nb de paniers créés /  Nb de visites</p>
+                <span>{{stats.nbPanier}} </span>
+            </div>
+        </div>
+
+        <!-- % conversion commandes -->
+        <div class="col-3">
+            <div class="card tall-card shadow-sm ">
+                <h3>% conversion commandes</h3>
+                <p> Nb de commandes / Nb de paniers créés</p>
+                <!-- <span>{{pourcentageConvCommand | number : ".0-2"}} % </span> -->
+                <ngx-charts-pie-grid 
+                    [scheme]="'horizon'"
+                    [view]="[300,350]"
+                    [results]="conversionCommande">
+                </ngx-charts-pie-grid>
+            </div>
+        </div>
+
+        <!-- Nb nvx clients -->
+        <div class="col-6">
+            <div class="card tall-card shadow-sm">
+                <div class="d-flex justify-content-between">
+                    <h3>Nombre de nouveaux clients</h3>
+                    <span>{{2000| number : ".0-1"}} </span>
+                </div>
+                        <ngx-charts-line-chart
+                            [view]="[500,200]"
+                            
+                            [scheme]="'horizon'"
+                            [legend]="legend"
+                            [showXAxisLabel]="showXAxisLabel"
+                            [showYAxisLabel]="showYAxisLabel"
+                            [xAxis]="xAxis"
+                            [yAxis]="yAxis"
+                            [xAxisLabel]="xAxisLabel"
+                            [yAxisLabel]="yAxisLabel"
+                            [timeline]="timeline"
+                            [results]="nbNewClient"
+                            >
+                        </ngx-charts-line-chart>
+            </div>
+        </div>
+
+        <!-- Nb visites -->
+        <div class="col-3">
+            <div class="card tall-card shadow-sm ">
+                <div class="d-flex justify-content-between">
+                    <h3>Nombre de visites</h3>
+                    <span> 30000 </span>
+
+                    <ngx-charts-line-chart
+                            [view]="[240,200]"
+                            
+                            [scheme]="'horizon'"
+                            [legend]="legend"
+                            [showXAxisLabel]="showXAxisLabel"
+                            [showYAxisLabel]="showYAxisLabel"
+                            [xAxis]="xAxis"
+                            [yAxis]="yAxis"
+                            [xAxisLabel]="xAxisLabel"
+                            [yAxisLabel]="yAxisLabel"
+                            [timeline]="timeline"
+                            [results]="nbVisite"
+                            >
+                        </ngx-charts-line-chart>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- % paniers abandonnés -->
+        <div class="col-3">
+            <div class="card tall-card shadow-sm">
+                <h3>% paniers abandonnés</h3>
+                <span>{{panierMoyen | number : ".2-2"}} € </span>
+            </div>
+        </div>
+
+    </div>
+    
+</div>
+<!-- /CONTENT -->
+        </div>
+    </div>
+</div>
+<!-- /SideNav -->

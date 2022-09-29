@@ -1,0 +1,67 @@
+h3{
+    font-size: 1rem;
+    color: #2F5214;
+    margin-bottom: 0.2em;
+}
+
+p{
+    font-size: .7rem;
+    color:#4D9416;
+}
+
+span{
+    font-size: .8rem;
+}
+
+.logoDash{
+    width: 160px;
+    margin-bottom: 2rem;
+}
+
+.card{
+    height: 65px;
+    padding: .5rem;
+}
+
+.tall-card{
+    height: 200px;
+}
+
+.blue{
+    background-color: #4CA7DA;
+}
+
+.blue h3{
+    color: white;
+}
+
+a{
+    color: black;
+}
+
+a:hover{
+    color: #2F5214 ;
+}
+
+
+.tall-card{
+    position: relative
+}
+
+ngx-charts-pie-grid{
+    position: absolute;
+    top: 2.2rem;
+    left: -25px;
+
+}
+
+ngx-charts-line-chart{
+    position: absolute;
+    top: 3rem;
+    left: 0px;
+
+}
+
+a.cp{
+    cursor: pointer;
+}

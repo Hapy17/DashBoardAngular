@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.pie-grid-item:nth-child(2){
+    display: none !important;
+}
+
+.pie-grid-item:nth-child(1) text:nth-child(1n+3){
+    display: none !important;
+}
+.pie-grid-item:nth-child(1) text:nth-child(1){
+    
+}
