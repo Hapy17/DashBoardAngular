@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Stats } from 'src/app/models/stats';
+import { TotalOrders } from 'src/app/models/total-orders';
+import { TotalSales } from 'src/app/models/total-sales';
 import { AuthService } from 'src/app/services/auth.service';
 import { StatsService } from 'src/app/services/stats.service';
 
@@ -10,9 +11,14 @@ import { StatsService } from 'src/app/services/stats.service';
 })
 export class DashboardComponent implements OnInit {
 
-  stats = new Stats;
+  totalSales: TotalSales = {totalSales : 0};
+  totalOrders: TotalOrders = {totalOrders : 0};
   panierMoyen?: number;
   pourcentageConvCommand!:number;
+  
+
+  // nombre totales des ventes
+
 
   // nb New Client
   nbNewClient: any[] = [
@@ -74,6 +80,7 @@ export class DashboardComponent implements OnInit {
   ];
   // Nb Visites
 
+  // Conversion Commande
   constructor(private authService : AuthService, private statsService: StatsService) { }
 
   conversionCommande: any[] = [];
@@ -93,25 +100,21 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.statsService.getStats().subscribe(data =>{
-      this.stats = data;
-      this.panierMoyen = data.montantVenteTotal/data.nbCommand;
+    // Total Sales
+    this.statsService.getTotalSales().subscribe(data =>{
+      this.totalSales = data;
+      // console.log(this.totalSales.totalSales); 
 
-      // Conversion commande
-      this.pourcentageConvCommand = data.nbCommand/20/*data.nbPanier*/*100;
-      this.conversionCommande = [
-        {
-          "name": "",
-          "value": this.pourcentageConvCommand
-        },
-        {
-          "name": "Conversion Commande",
-          "value": 100-this.pourcentageConvCommand
-        },
-      ];
-      // Conversion Commande
+    })  
 
-    })  }
+    // Total Orders
+    this.statsService.getTotalOrders().subscribe(data =>{
+      this.totalOrders = data;
+      console.log(this.totalOrders);
+    })
+
+
+  }
 
   doLogOut(){
     this.authService.doLogout();

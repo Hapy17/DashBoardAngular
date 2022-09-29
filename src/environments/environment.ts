@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  api : 'http://3.94.87.10/apibusinesscase/public/'
+  // api : 'http://3.94.87.10/apibusinesscase/public/'
+  api : 'http://127.0.0.1:8000/'
 };
 
 /*

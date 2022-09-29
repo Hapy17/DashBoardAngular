@@ -10,9 +10,9 @@
                     <li class="nav-item">
                         <a href="#" class="nav-link align-middle px-0">Home</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a (click)="print()" class="nav-link align-middle px-0 cp">Imprimer un résumé</a>
-                    </li>
+                    </li> -->
                 </ul>
                     
                 <hr>
@@ -31,7 +31,8 @@
         <div class="col-3">
             <div class=" blue card text-white shadow-sm">
                 <h3>Montant total des ventes</h3>
-                <span>{{stats.montantVenteTotal  | number : ".2-2"}} €  </span>
+                <span>{{totalSales.totalSales | number : ".2-2"}} €  </span>
+                
             </div>
         </div>
         
@@ -39,7 +40,7 @@
         <div class="col-3">
             <div class="card  shadow-sm">
                 <h3>Nombre de commandes</h3>
-                <span>{{stats.nbCommand}} </span>
+                <span>{{totalOrders.totalOrders}} </span>
             </div>
         </div>
 
@@ -47,7 +48,7 @@
         <div class="col-3">
             <div class="card shadow-sm ">
                 <h3>Nombre de paniers</h3>
-                <span>{{stats.nbPanier}} </span>
+                <!-- <span>{{stats.nbPanier}} </span> -->
             </div>
         </div>
 
@@ -73,7 +74,7 @@
             <div class="card tall-card shadow-sm ">
                 <h3>% récurrence commandes </h3>
                 <p>Nb de 1ère commandes / Total commandes</p>
-                <span>{{stats.nbCommand}} </span>
+                <!-- <span>{{stats.nbCommand}} </span> -->
             </div>
         </div>
 
@@ -82,7 +83,7 @@
             <div class="card tall-card shadow-sm">
                 <h3>% récurrence Panier</h3>
                 <p>Nb de paniers créés /  Nb de visites</p>
-                <span>{{stats.nbPanier}} </span>
+                <!-- <span>{{stats.nbPanier}} </span> -->
             </div>
         </div>
 
