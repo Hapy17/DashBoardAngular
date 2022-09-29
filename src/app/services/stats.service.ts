@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { TotalSales } from '../models/total-sales';
 import { TotalOrders } from '../models/total-orders';
+import { TotalBasket } from '../models/total-basket';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class StatsService {
 
   getTotalOrders(): Observable<TotalOrders>{
     return this.httpCLient.get<TotalOrders>(this.url +'api/total-orders');
+  }
+
+  getTotalBaskets(): Observable<TotalBasket>{
+    return this.httpCLient.get<TotalBasket>(this.url +'api/total-baskets');
   }
 
 }

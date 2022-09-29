@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TotalBasket } from 'src/app/models/total-basket';
 import { TotalOrders } from 'src/app/models/total-orders';
 import { TotalSales } from 'src/app/models/total-sales';
 import { AuthService } from 'src/app/services/auth.service';
@@ -13,6 +14,7 @@ export class DashboardComponent implements OnInit {
 
   totalSales: TotalSales = {totalSales : 0};
   totalOrders: TotalOrders = {totalOrders : 0};
+  totalBaskets: TotalBasket = {totalBaskets : 0};
   panierMoyen?: number;
   pourcentageConvCommand!:number;
   
@@ -111,6 +113,12 @@ export class DashboardComponent implements OnInit {
     this.statsService.getTotalOrders().subscribe(data =>{
       this.totalOrders = data;
       console.log(this.totalOrders);
+    })
+
+    // Total Baskets
+    this.statsService.getTotalBaskets().subscribe(data =>{
+      this.totalBaskets = data;
+      console.log(this.totalBaskets);
     })
 
 
