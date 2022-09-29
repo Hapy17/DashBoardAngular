@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { forkJoin } from 'rxjs';
 import { TotalBasket } from 'src/app/models/total-basket';
 import { TotalOrders } from 'src/app/models/total-orders';
 import { TotalSales } from 'src/app/models/total-sales';
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
   totalBaskets: TotalBasket = {totalBaskets : 0};
   panierMoyen?: number;
   pourcentageConvCommand!:number;
-  
+  onLoading: boolean = true;
 
   // nombre totales des ventes
 
@@ -98,28 +99,44 @@ export class DashboardComponent implements OnInit {
   xAxisLabel: string = ' ';
   yAxisLabel: string = ' ';
   timeline: boolean = true;
+  
   // options line charts
 
 
   ngOnInit(): void {
-    // Total Sales
-    this.statsService.getTotalSales().subscribe(data =>{
-      this.totalSales = data;
-      // console.log(this.totalSales.totalSales); 
 
-    })  
+    forkJoin<Array<any>>([
+      this.statsService.getTotalSales(),
+      this.statsService.getTotalOrders(),
+      this.statsService.getTotalBaskets(),
+    ]).subscribe(([totalSales, totalOrders, totalBaskets]) => { 
+      this.totalSales = totalSales;
+      this.totalOrders = totalOrders;
+      this.totalBaskets = totalBaskets;
+      this.onLoading = false;
+    });
 
-    // Total Orders
-    this.statsService.getTotalOrders().subscribe(data =>{
-      this.totalOrders = data;
-      console.log(this.totalOrders);
-    })
 
-    // Total Baskets
-    this.statsService.getTotalBaskets().subscribe(data =>{
-      this.totalBaskets = data;
-      console.log(this.totalBaskets);
-    })
+
+
+    // // Total Sales
+    // this.statsService.getTotalSales().subscribe(data =>{
+    //   this.totalSales = data;
+    //   // console.log(this.totalSales.totalSales); 
+
+    // })  
+
+    // // Total Orders
+    // this.statsService.getTotalOrders().subscribe(data =>{
+    //   this.totalOrders = data;
+    //   console.log(this.totalOrders);
+    // })
+
+    // // Total Baskets
+    // this.statsService.getTotalBaskets().subscribe(data =>{
+    //   this.totalBaskets = data;
+    //   console.log(this.totalBaskets);
+    // })
 
 
   }
